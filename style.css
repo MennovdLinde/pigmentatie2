@@ -1,0 +1,222 @@
+.body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+nav {
+    z-index: 3;
+}
+
+li {
+    font-size: 1.20rem;
+}
+
+p {
+    font-size: 1.3rem; /* standaard voor normale schermen */
+}
+
+@media (max-width: 768px) {
+    p {
+        font-size: 4.6vw; /* voor telefoons: relatief groter */
+    }
+}
+
+#contentMask {
+    background-color: rgba(178, 228, 207, 0.9);
+    z-index: 2;
+    position: fixed;
+    transition: all 0.3s ease-in-out;
+    top: 0;
+    left: 0;
+    height: 169px;
+    width: 100%;
+}
+
+#underbody {
+    margin-top: 169px;
+    z-index: 1;
+}
+
+.beer-slider {
+    border-radius: 30px;
+    background-color:white;
+}
+
+#home-card {
+    background-color: #b2e4cf;
+    width: 90%;
+}
+
+#logo {
+    height: 140px;
+    width: 100%;
+    margin-top: -12px;
+    z-index: 1;
+}
+
+#navbar {
+    margin-top: 111px;
+}
+
+.scrolled-down {
+    transform: translateY(-75%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.scrolled-up {
+    transform: translateY(0);
+    transition: all 0.2s ease-in-out;
+}
+
+#button {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    z-index: 3;
+    border: none;
+    color: white;
+}
+
+#button-footer {
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+}
+
+#nav-tab button {
+    color: white;
+    border: none;
+    font-weight: 500;
+    background-color: transparent;
+    margin-left: clamp(5px, 1.5vw, 50px);
+    margin-right: clamp(5px, 1.5vw, 50px);
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+
+#nav-tab .nav-link {
+    color: #2f4f4f;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+}
+
+#nav-tab .nav-link.active {
+    background-color: rgba(33, 37, 41, 0.9); /* Donkere mint */
+    color: white;
+}
+
+#nav-tab .nav-link:hover {
+    background-color: rgba(33, 37, 41, 0.9); /* Lichtere hover mint */
+    color: white;
+}
+
+
+#card {
+    border: none;
+    overflow-y: auto;
+    align-items: center;
+    background-color: transparent;
+}
+
+#card img {
+    height: 50vh;
+    width: 100%;
+    object-fit: contain;
+}
+
+#menu-tab {
+    background-color: rgba(178, 228, 207, 1);
+    border-radius: 2px;
+}
+
+#menu-tab button {
+    background-color: transparent;
+    color: white;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0px;
+    border-width: 2px;
+    flex-grow: 1;
+        min-width: min-content;
+        max-width: 40%;
+        font-size: medium;
+}
+
+#btn-verstuur {
+    color: white;
+    font-size: large;
+}
+
+footer {
+    background-color: rgba(178, 228, 207, 1);
+    width: 100%;
+    }
+    
+.footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    
+@media (max-width: 767px) {
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+    }
+            }
+
+
+.no-radius-bottom {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.yes-radius-bottom {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#card-text-item {
+    height: 175px;
+}
+
+.card-text li {
+    margin-bottom: 2px;
+}
+
+.image-grid {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.image-grid img {
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
+}
+
+#behandeling-items {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+}
+
+#behandeling-items .card {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    border-color: rgba(178, 228, 207, 1);
+    border-width: 2px;
+    border-bottom: 0;
+}
+
