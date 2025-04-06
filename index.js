@@ -52,15 +52,42 @@ fetch("home.html")
     initBeerSliders(); // ← voeg dit toe!
   });
 
-function initBeerSliders() {
-  const sliders = document.querySelectorAll(".beer-slider");
-  sliders.forEach((slider) => {
+  function initBeerSliders() {
+    const sliders = document.querySelectorAll(".beer-slider");
+  
+    sliders.forEach((slider) => {
+      const images = slider.querySelectorAll("img");
+      let loadedCount = 0;
+  
+      images.forEach((img) => {
+        if (img.complete) {
+          loadedCount++;
+        } else {
+          img.addEventListener("load", () => {
+            loadedCount++;
+            if (loadedCount === images.length) {
+              initializeSlider(slider);
+            }
+          });
+          img.addEventListener("error", () => {
+            loadedCount++;
+          });
+        }
+      });
+  
+      if (loadedCount === images.length) {
+        initializeSlider(slider);
+      }
+    });
+  }
+  
+  function initializeSlider(slider) {
     if (!slider.classList.contains("beer-loaded")) {
       new BeerSlider(slider);
       slider.classList.add("beer-loaded");
     }
-  });
-}
+  }
+  
 
 fetch("behandelingen.html")
   .then((response) => response.text())

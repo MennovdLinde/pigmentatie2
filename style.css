@@ -137,7 +137,7 @@ p {
 }
 
 #menu-tab {
-    background-color: rgba(178, 228, 207, 1);
+    background-color: rgba(33, 37, 41, 0.9);
     border-radius: 2px;
 }
 
@@ -148,11 +148,12 @@ p {
     border-top: none;
     border-right: none;
     border-radius: 0px;
-    border-width: 2px;
+    border-width: 5px;
     flex-grow: 1;
         min-width: min-content;
         max-width: 40%;
         font-size: medium;
+        font-weight: bold;
 }
 
 #btn-verstuur {
@@ -176,7 +177,7 @@ footer {
         display: flex;
         flex-direction: column;
     }
-            }
+}
 
 
 .no-radius-bottom {
@@ -210,6 +211,15 @@ footer {
     object-fit: cover;
     object-position: top;
     border-radius: 20px;
+}
+
+@media (max-width: 767px) {
+    .image-grid img {
+        width: 90%;
+        height: 20vh;
+        object-fit: cover;
+        border-radius: 20px;
+    }
 }
 
 #behandeling-items {

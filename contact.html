@@ -2,12 +2,12 @@
 <html lang="en">
 
 <body>
-    <div class="container col-12 col-md-7">
-        <div class="row d-flex justify-content-center px-md-2">
-            <ul class="nav nav-tabs mb-2 mt-3 d-flex justify-content-evenly border-0 align-self-center" id="menu-tab"
+    <div class="container col-11 mx-auto col-md-7">
+        <div class="row d-flex justify-content-center px-2 ">
+            <ul class="nav nav-tabs mb-2 mt-3 d-flex justify-content-evenly border-0 align-self-center rounded" id="menu-tab"
                 role="tablist">
                 <button class="nav-link active" id="consult-tab" data-bs-toggle="tab" data-bs-target="#consult" type="button"
-                    role="tab" aria-controls="consult" aria-selected="true">CONSULT</button>
+                    role="tab" aria-controls="consult" aria-selected="true">FOTO CONSULT</button>
                 <button class="nav-link" id="vraag-tab" data-bs-toggle="tab" data-bs-target="#vraag" type="button" role="tab"
                     aria-controls="vraag" aria-selected="false">VRAAG</button>
             </ul>
@@ -16,22 +16,37 @@
         <div class="row d-flex justify-content-center">
             <div class="card tab-content bg-transparent border-0">
                 <div class="tab-pane fade show active" id="consult" role="tabpanel" aria-labelledby="consult-tab">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         <div class="form-floating my-4">
                             <input type="text" class="form-control" id="floatingName" name="naam" placeholder="name">
                             <label for="floatingName">Uw volledige naam</label>
-                        </div>
-                        <div class="form-floating my-4">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                                name="vraag" style="height: 100px"></textarea>
-                            <label for="floatingTextarea2">Stel uw vraag</label>
                         </div>
                         <div class="form-floating my-4">
                             <input type="email" class="form-control" id="floatingEmail" name="email"
                                 placeholder="name@example.com">
                             <label for="floatingEmail">Email</label>
                         </div>
-                        <button type="submit" class="btn mb-4 btn-lg col-12" id="btn-verstuur" style="font-weight: bold; background-color: rgba(178, 228, 207, 1);">VERSTUUR</button>
+                        <div class="form-floating my-4">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                                name="vraag" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Notitie, wensen, situatie, bijzonderheden etc</label>
+                        </div>
+                        <div class="my-4">
+                            <label class="form-label" for="fotoUpload">Upload foto vooraanzicht</label>
+                            <input class="form-control" type="file" id="fotoUpload" name="fotos[]" accept="image/*">
+                            <small class="form-text text-muted">JPG, PNG of HEIC.</small>
+                        </div>
+                        <div class="my-4">
+                            <label class="form-label" for="fotoUpload">Upload foto zijaanzicht</label>
+                            <input class="form-control" type="file" id="fotoUpload" name="fotos[]" accept="image/*">
+                            <small class="form-text text-muted">JPG, PNG of HEIC.</small>
+                        </div>
+                        <div class="my-4">
+                            <label class="form-label" for="fotoUpload">Upload foto achteraanzicht/ kruin</label>
+                            <input class="form-control" type="file" id="fotoUpload" name="fotos[]" accept="image/*">
+                            <small class="form-text text-muted">JPG, PNG of HEIC.</small>
+                        </div>
+                        <button type="submit" class="btn mb-4 btn-lg col-12" id="btn-verstuur" style="font-weight: bold; background-color: rgba(33, 37, 41, 0.9);">VERSTUUR</button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="vraag" role="tabpanel" aria-labelledby="vraag-tab">
@@ -50,7 +65,7 @@
                                 placeholder="name@example.com">
                             <label for="floatingEmail">Email</label>
                         </div>
-                        <button type="submit" class="btn mb-4 btn-lg col-12" id="btn-verstuur" style="font-weight: bold; background-color: rgba(178, 228, 207, 1);">VERSTUUR</button>
+                        <button type="submit" class="btn mb-4 btn-lg col-12" id="btn-verstuur" style="font-weight: bold; background-color: rgba(33, 37, 41, 0.9);">VERSTUUR</button>
                     </form>
                 </div>
             </div>
