@@ -1,6 +1,7 @@
 .body {
     overflow-y: scroll;
     overflow-x: hidden;
+    background-color: rgba(35, 33, 46, 1);
 }
 
 ::-webkit-scrollbar {
@@ -9,7 +10,37 @@
 }
 
 nav {
-    z-index: 3;
+    background-color: rgba(35, 33, 46, 0.8);
+}
+
+.navbar-large {
+    transition: all 0.35s cubic-bezier(.68, -0.55, .27, 1.55);
+}
+
+.navbar-small {
+    transition: all 0.3s cubic-bezier(.68, -0.55, .27, 1.55);
+}
+
+#logo img {
+    transition: all 0.3s cubic-bezier(.68, -0.55, .27, 1.55);
+    max-height: 85px;
+    margin-top: -10px;
+}
+
+.navbar-small #logo img {
+    max-height: 50px;
+}
+
+#navbar {
+    transition: margin-top 0.3s ease-in-out;
+}
+
+.navbar-large #navbar {
+    margin-top: 20px;
+}
+
+.navbar-small #navbar {
+    margin-top: 10px;
 }
 
 li {
@@ -17,55 +48,34 @@ li {
 }
 
 p {
-    font-size: 1.2rem; /* standaard voor normale schermen */
+    font-size: 1.2rem;
+    /* standaard voor normale schermen */
 }
 
 @media (max-width: 768px) {
     p {
-        font-size: 4.6vw; /* voor telefoons: relatief groter */
+        font-size: 4.6vw;
+        /* voor telefoons: relatief groter */
     }
 }
 
-#contentMask {
-    background-color: rgba(178, 228, 207, 0.9);
-    z-index: 2;
-    position: fixed;
-    transition: all 0.3s ease-in-out;
-    top: 0;
-    left: 0;
-    height: 169px;
-    width: 100%;
-}
-
 #underbody {
-    margin-top: 169px;
-    z-index: 1;
+    margin-top: 120px;
 }
 
 .beer-slider {
     border-radius: 30px;
-    background-color:white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    height: 60vh;
 }
 
-#home-card {
-    background-color: #b2e4cf;
-    width: 90%;
-}
-
-#home-card2 {
-    background-color: rgba(33, 37, 41, 0.9);
-    width: 90%;
-}
-
-#logo {
-    height: 140px;
+.beer-slider img,
+.beer-reveal img {
     width: 100%;
-    margin-top: -12px;
-    z-index: 1;
-}
-
-#navbar {
-    margin-top: 111px;
+    object-fit: contain;
+    border-radius: 30px;
 }
 
 .scrolled-down {
@@ -83,7 +93,6 @@ p {
     position: fixed;
     top: 50px;
     right: 50px;
-    z-index: 3;
     border: none;
     color: white;
 }
@@ -106,32 +115,38 @@ p {
 }
 
 #nav-tab .nav-link {
-    color: #2f4f4f;
+    color: white;
     background-color: transparent;
     transition: background-color 0.3s ease;
     border-radius: 10px;
 }
 
 #nav-tab .nav-link.active {
-    background-color: rgba(33, 37, 41, 0.9); /* Donkere mint */
-    color: white;
+    border-style: ridge;
+    border-color: rgba(203, 165, 102, 1);
 }
 
 #nav-tab .nav-link:hover {
-    background-color: rgba(33, 37, 41, 0.9); /* Lichtere hover mint */
     color: white;
 }
 
-
-#card {
+#card,
+#card-big,
+#card-small,
+#card-mob {
     border: none;
     overflow-y: auto;
-    align-items: center;
     background-color: transparent;
 }
 
+#card-big img {
+    height: 80vh;
+    width: 100%;
+    object-fit: cover;
+}
+
 #card img {
-    height: 50vh;
+    height: 55vh;
     width: 100%;
     object-fit: contain;
 }
@@ -150,10 +165,10 @@ p {
     border-radius: 0px;
     border-width: 5px;
     flex-grow: 1;
-        min-width: min-content;
-        max-width: 40%;
-        font-size: medium;
-        font-weight: bold;
+    min-width: min-content;
+    max-width: 40%;
+    font-size: medium;
+    font-weight: bold;
 }
 
 #btn-verstuur {
@@ -162,20 +177,30 @@ p {
 }
 
 footer {
-    background-color: rgba(178, 228, 207, 1);
+    background-color: rgba(35, 33, 46, 0.8);
     width: 100%;
-    }
-    
+    border-top: 1px ridge rgba(203, 165, 102, 1);
+}
+
 .footer-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-    
+
 @media (max-width: 767px) {
     .footer-container {
         display: flex;
         flex-direction: column;
+    }
+
+    #logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    #logo img {
+        max-height: 70px;
     }
 }
 
@@ -236,4 +261,3 @@ footer {
     border-width: 2px;
     border-bottom: 0;
 }
-

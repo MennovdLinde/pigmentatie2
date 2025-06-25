@@ -1,33 +1,18 @@
-function navUp() {
-  document.getElementById("navbar").classList.add("scrolled-down");
-  document.getElementById("navbar").classList.remove("scrolled-up");
-  document.getElementById("contentMask").style.height = "120px";
-}
-
-function navDown() {
-  document.getElementById("navbar").classList.add("scrolled-up");
-  document.getElementById("navbar").classList.remove("scrolled-down");
-  document.getElementById("contentMask").style.height = "169px";
-}
-
-window.onscroll = function () {
-  scrollFunction();
-};
-
-function scrollFunction() {
-  if (window.innerWidth > 768) {
-    if (
-      document.body.scrollTop > 80 ||
-      document.documentElement.scrollTop > 80
-    ) {
-      navUp();
-    } else {
-      navDown();
-    }
+window.addEventListener("scroll", function () {
+  const navbar = document.querySelector("nav.navbar");
+  if (window.scrollY > 60) {
+    navbar.classList.remove("navbar-large");
+    navbar.classList.add("navbar-small");
   } else {
-    navDown();
+    navbar.classList.add("navbar-large");
+    navbar.classList.remove("navbar-small");
   }
-}
+});
+
+window.addEventListener("DOMContentLoaded", function () {
+  const navbar = document.querySelector("nav.navbar");
+  navbar.classList.add("navbar-large");
+});
 
 function triggerBtn() {
   var triggetContact = document.getElementById("nav-contact-tab");
@@ -39,65 +24,72 @@ function triggerBtn2() {
   triggetContact.click();
 }
 
-document.getElementById("logo").addEventListener("mouseover", function () {
-  if (window.innerWidth > 768) {
-    navDown();
-  }
-});
-
 fetch("home.html")
   .then((response) => response.text())
   .then((html) => {
     document.getElementById("nav-home").innerHTML = html;
-    initBeerSliders(); // ← voeg dit toe!
-  });
+    const carousels = [
+      "#carouselExampleSlidesOnly",
+      "#carouselExampleSlidesOnly1",
+      "#carouselExampleSlidesOnly1mob",
+      "#carouselExampleSlidesOnly2",
+      "#carouselExampleSlidesOnly2mob",
+    ];
 
-  function initBeerSliders() {
-    const sliders = document.querySelectorAll(".beer-slider");
-  
-    sliders.forEach((slider) => {
-      const images = slider.querySelectorAll("img");
-      let loadedCount = 0;
-  
-      images.forEach((img) => {
-        if (img.complete) {
-          loadedCount++;
-        } else {
-          img.addEventListener("load", () => {
-            loadedCount++;
-            if (loadedCount === images.length) {
-              initializeSlider(slider);
-            }
-          });
-          img.addEventListener("error", () => {
-            loadedCount++;
-          });
-        }
-      });
-  
-      if (loadedCount === images.length) {
-        initializeSlider(slider);
+    carousels.forEach((id) => {
+      const element = document.querySelector(id);
+      if (element) {
+        new bootstrap.Carousel(element);
       }
     });
-  }
-  
-  function initializeSlider(slider) {
-    if (!slider.classList.contains("beer-loaded")) {
-      new BeerSlider(slider);
-      slider.classList.add("beer-loaded");
-    }
-  }
-  
+  });
 
 fetch("behandelingen.html")
   .then((response) => response.text())
   .then((html) => {
     document.getElementById("nav-behandelingen").innerHTML = html;
+    initBeerSliders();
   });
 
+  function initBeerSliders() {
+  const sliders = document.querySelectorAll(".beer-slider");
+
+  sliders.forEach((slider) => {
+    const images = slider.querySelectorAll("img");
+    let loadedCount = 0;
+
+    images.forEach((img) => {
+      if (img.complete) {
+        loadedCount++;
+      } else {
+        img.addEventListener("load", () => {
+          loadedCount++;
+          if (loadedCount === images.length) {
+            initializeSlider(slider);
+          }
+        });
+        img.addEventListener("error", () => {
+          loadedCount++;
+        });
+      }
+    });
+
+    if (loadedCount === images.length) {
+      initializeSlider(slider);
+    }
+  });
+}
+
+function initializeSlider(slider) {
+  if (!slider.classList.contains("beer-loaded")) {
+    new BeerSlider(slider);
+    slider.classList.add("beer-loaded");
+  }
+}
+
 fetch("contact.html")
-.then((response) => response.text())
-.then((html) => {
-  document.getElementById("nav-contact").innerHTML = html;
-  addAfsprakenToggleEvents();
-});
+  .then((response) => response.text())
+  .then((html) => {
+    document.getElementById("nav-contact").innerHTML = html;
+    addAfsprakenToggleEvents();
+  });
