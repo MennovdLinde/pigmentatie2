@@ -21,6 +21,18 @@ nav {
     transition: all 0.3s cubic-bezier(.68, -0.55, .27, 1.55);
 }
 
+.studio-text {
+  opacity: 1;
+  max-height: 100px;
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+  overflow: hidden;
+}
+
+.navbar-small .studio-text {
+  opacity: 0;
+  max-height: 0;
+}
+
 #logo img {
     transition: all 0.3s cubic-bezier(.68, -0.55, .27, 1.55);
     max-height: 85px;
@@ -53,19 +65,14 @@ p {
 }
 
 #underbody {
-    margin-top: 120px;
+    margin-top: 200px;
 }
 
 @media (max-width: 768px) {
     p {
-        font-size: 4.6vw;
+        font-size: 4vw;
         /* voor telefoons: relatief groter */
     }
-
-    #underbody {
-        margin-top: 140px;
-    }
-
     .navbar-small #navbar {
         margin-top: 20px;
     }
@@ -95,29 +102,18 @@ p {
   left: 0;
 }
 
-.scrolled-down {
-    transform: translateY(-75%);
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-}
-
-.scrolled-up {
-    transform: translateY(0);
-    transition: all 0.2s ease-in-out;
-}
-
 #button {
     position: fixed;
     top: 50px;
     right: 50px;
     border: none;
-    color: white;
+    color: transparent;
 }
 
 #button-footer {
-    border: 2px solid white;
+    border: 2px solid rgba(35, 33, 46, 1);
     border-radius: 5px;
-    color: white;
+    color: rgba(35, 33, 46, 1);
 }
 
 #nav-tab {
@@ -130,6 +126,7 @@ p {
     color: white;
     border: none;
     font-weight: 500;
+    font-size: 0.8rem;
     background-color: transparent;
     margin-left: clamp(5px, 1.5vw, 50px);
     margin-right: clamp(5px, 1.5vw, 50px);
