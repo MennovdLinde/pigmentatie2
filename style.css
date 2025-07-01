@@ -22,37 +22,29 @@ nav {
 }
 
 .studio-text {
-  opacity: 1;
-  max-height: 100px;
-  transition: opacity 0.5s ease, max-height 0.5s ease;
-  overflow: hidden;
+    opacity: 1;
+    max-height: 100px;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+    overflow: hidden;
 }
 
 .navbar-small .studio-text {
-  opacity: 0;
-  max-height: 0;
+    opacity: 0;
+    max-height: 0;
 }
 
 #logo img {
     transition: all 0.3s cubic-bezier(.68, -0.55, .27, 1.55);
     max-height: 100px;
-    margin-top: -10px;
 }
 
 .navbar-small #logo img {
-    max-height: 50px;
+    max-height: 70px;
+    margin-top: 5px;
 }
 
 #navbar {
     transition: margin-top 0.3s ease-in-out;
-}
-
-.navbar-large #navbar {
-    margin-top: 20px;
-}
-
-.navbar-small #navbar {
-    margin-top: 10px;
 }
 
 li {
@@ -65,7 +57,7 @@ p {
 }
 
 #underbody {
-    margin-top: 220px;
+    margin-top: 165px;
 }
 
 @media (max-width: 768px) {
@@ -79,8 +71,9 @@ p {
     }
 
     #underbody {
-        margin-top: 180px;
+        margin-top: 165px;
     }
+
     .footer-container {
         display: flex;
         flex-direction: column;
@@ -96,26 +89,25 @@ p {
     }
 }
 
-.beer-slider {
-  overflow: hidden;
-  height: 65vh;
-}
-
-.beer-slider img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
+.beer-slider, 
 .beer-reveal {
-  height: 65vh;
-  overflow: hidden;
+    overflow: hidden;
+    height: 65vh;
 }
 
+.beer-slider img,
 .beer-reveal img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+}
+
+.beer-slider {
+  visibility: hidden;
+  position: relative;
+}
+
+.beer-slider.beer-loaded {
+  visibility: visible;
 }
 
 #button {
@@ -133,9 +125,9 @@ p {
 }
 
 #nav-tab {
-  flex-wrap: nowrap !important;
-  overflow-x: auto;
-  white-space: nowrap;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 #nav-tab button {
@@ -231,4 +223,29 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+nav .contact-info {
+  display: none;
+  position: absolute;       /* t.o.v. de nav (fixed) */
+  top: 1rem;                /* iets onder de bovenzijde */
+  right: 2rem;              /* afstand vanaf de rechterrand */
+  text-align: right;
+  font-size: 1rem;
+}
+
+/* Links stijl */
+nav .contact-info a {
+  color: rgba(203, 165, 102, 1);  /* precies dezelfde goudkleur */
+  text-decoration: none;
+}
+
+/* Alleen tonen bij grote navbar */
+.navbar-large .contact-info {
+  display: block;
+}
+
+/* Bij klein geworden navbar weer verbergen */
+.navbar-small .contact-info {
+  display: none;
 }

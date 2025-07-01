@@ -51,10 +51,15 @@ fetch("behandelingen.html")
     initBeerSliders();
   });
 
-  function initBeerSliders() {
+function isVisible(el) {
+  return el.offsetParent !== null;
+}
+
+function initBeerSliders() {
   const sliders = document.querySelectorAll(".beer-slider");
 
   sliders.forEach((slider) => {
+    if (!isVisible(slider)) return; // skip verborgen sliders
     const images = slider.querySelectorAll("img");
     let loadedCount = 0;
 
@@ -78,6 +83,15 @@ fetch("behandelingen.html")
       initializeSlider(slider);
     }
   });
+
+  // fallback init na 2 seconden voor overgebleven sliders
+  setTimeout(() => {
+    sliders.forEach((slider) => {
+      if (!slider.classList.contains("beer-loaded") && isVisible(slider)) {
+        initializeSlider(slider);
+      }
+    });
+  }, 2000);
 }
 
 function initializeSlider(slider) {
