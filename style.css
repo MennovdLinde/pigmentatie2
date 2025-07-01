@@ -35,7 +35,7 @@ nav {
 
 #logo img {
     transition: all 0.3s cubic-bezier(.68, -0.55, .27, 1.55);
-    max-height: 85px;
+    max-height: 100px;
     margin-top: -10px;
 }
 
@@ -65,7 +65,7 @@ p {
 }
 
 #underbody {
-    margin-top: 200px;
+    margin-top: 220px;
 }
 
 @media (max-width: 768px) {
@@ -73,33 +73,49 @@ p {
         font-size: 4vw;
         /* voor telefoons: relatief groter */
     }
+
     .navbar-small #navbar {
         margin-top: 20px;
+    }
+
+    #underbody {
+        margin-top: 180px;
+    }
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    #logo img {
+        max-height: 70px;
     }
 }
 
 .beer-slider {
-  position: relative;
   overflow: hidden;
+  height: 65vh;
 }
 
 .beer-slider img {
-  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .beer-reveal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 50%;
+  height: 65vh;
   overflow: hidden;
 }
 
 .beer-reveal img {
-  position: absolute;
-  top: 0;
-  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 #button {
@@ -126,7 +142,7 @@ p {
     color: white;
     border: none;
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     background-color: transparent;
     margin-left: clamp(5px, 1.5vw, 50px);
     margin-right: clamp(5px, 1.5vw, 50px);
@@ -159,16 +175,26 @@ p {
     background-color: transparent;
 }
 
-#card-big img {
-    height: 80vh;
+#card {
+    height: 65vh;
+}
+
+#card-mob {
+    height: 45vh;
+}
+
+#card img,
+#card-mob img {
+    height: 100%;
     width: 100%;
-    object-fit: cover;
 }
 
 #card img {
-    height: 55vh;
-    width: 100%;
     object-fit: contain;
+}
+
+#card-mob img {
+    object-fit: cover;
 }
 
 #menu-tab {
@@ -205,42 +231,4 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-@media (max-width: 767px) {
-    .footer-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    #logo {
-        width: 100%;
-        text-align: center;
-    }
-
-    #logo img {
-        max-height: 70px;
-    }
-
-    #card-big img {
-        height: 50vh;
-    }
-}
-
-.no-radius-bottom {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.yes-radius-bottom {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-#card-text-item {
-    height: 175px;
-}
-
-.card-text li {
-    margin-bottom: 2px;
 }
