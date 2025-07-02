@@ -107,3 +107,30 @@ fetch("contact.html")
     document.getElementById("nav-contact").innerHTML = html;
     addAfsprakenToggleEvents();
   });
+
+
+document.getElementById("nav-behandelingen-tab").addEventListener("shown.bs.tab", function () {
+  initBeerSliders();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Event voor de dropdown-items in behandelingen
+  document.querySelectorAll('.dropdown-item[data-scrollto]').forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      // Eerst de behandelingen-tab openen (indien nog niet actief)
+      document.getElementById('nav-behandelingen-tab').click();
+
+      // Even kort wachten tot de content is geladen
+      setTimeout(() => {
+        const id = item.getAttribute('data-scrollto');
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 200); // 200ms is net iets veiliger voor laden
+    });
+  });
+});
+

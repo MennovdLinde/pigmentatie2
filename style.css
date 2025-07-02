@@ -87,6 +87,17 @@ p {
     #logo img {
         max-height: 70px;
     }
+
+    .beer-slider,
+    .beer-reveal {
+        height: 32vh !important;
+        min-height: 170px;
+        max-height: 340px;
+    }
+    .beer-slider {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
 }
 
 .beer-slider, 
@@ -190,7 +201,7 @@ p {
 }
 
 #menu-tab {
-    background-color: rgba(33, 37, 41, 0.9);
+    background-color: rgba(35, 33, 46, 0.9);
     border-radius: 2px;
 }
 
@@ -240,12 +251,3 @@ nav .contact-info a {
   text-decoration: none;
 }
 
-/* Alleen tonen bij grote navbar */
-.navbar-large .contact-info {
-  display: block;
-}
-
-/* Bij klein geworden navbar weer verbergen */
-.navbar-small .contact-info {
-  display: none;
-}
