@@ -35,12 +35,11 @@ nav {
 
 #logo img {
     transition: all 0.3s cubic-bezier(.68, -0.55, .27, 1.55);
-    max-height: 100px;
+    max-height: 170px;
 }
 
 .navbar-small #logo img {
-    max-height: 70px;
-    margin-top: 5px;
+    max-height: 90px;
 }
 
 #navbar {
