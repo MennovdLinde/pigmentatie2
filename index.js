@@ -29,7 +29,6 @@ fetch("home.html")
   .then((html) => {
     document.getElementById("nav-home").innerHTML = html;
     const carousels = [
-      "#carouselExampleSlidesOnly",
       "#carouselExampleSlidesOnly1",
       "#carouselExampleSlidesOnly1mob",
       "#carouselExampleSlidesOnly2",
@@ -108,29 +107,93 @@ fetch("contact.html")
     addAfsprakenToggleEvents();
   });
 
+document
+  .getElementById("nav-behandelingen-tab")
+  .addEventListener("shown.bs.tab", function () {
+    initBeerSliders();
+  });
 
-document.getElementById("nav-behandelingen-tab").addEventListener("shown.bs.tab", function () {
-  initBeerSliders();
-});
+document.addEventListener("DOMContentLoaded", function () {
+  const behandelingenTab = document.getElementById("nav-behandelingen-tab");
+  const dropdown = document.getElementById("behandelingen-dropdown");
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Event voor de dropdown-items in behandelingen
-  document.querySelectorAll('.dropdown-item[data-scrollto]').forEach(function (item) {
-    item.addEventListener('click', function (e) {
-      e.preventDefault();
+  behandelingenTab.addEventListener("click", function (e) {
+    setTimeout(function () {
+      const rect = behandelingenTab.getBoundingClientRect();
+      dropdown.style.top = rect.bottom + "px";
+      dropdown.style.display = "block";
 
-      // Eerst de behandelingen-tab openen (indien nog niet actief)
-      document.getElementById('nav-behandelingen-tab').click();
+      if (window.innerWidth <= 768) {
+        // Op mobiel: gebruik offset tov parent
+        dropdown.style.width = behandelingenTab.offsetWidth + "px";
+        dropdown.style.left = behandelingenTab.offsetLeft + "px";
+      } else {
+        // Desktop
+        dropdown.style.width = rect.width + "px";
+        dropdown.style.left = rect.left + "px";
+      }
+    }, 150);
 
-      // Even kort wachten tot de content is geladen
-      setTimeout(() => {
-        const id = item.getAttribute('data-scrollto');
-        const target = document.getElementById(id);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 200); // 200ms is net iets veiliger voor laden
+    document.addEventListener("click", function handler(evt) {
+      if (!dropdown.contains(evt.target) && evt.target !== behandelingenTab) {
+        dropdown.style.display = "none";
+        document.removeEventListener("click", handler);
+      }
     });
   });
+
+  window.addEventListener("scroll", () => (dropdown.style.display = "none"));
+  window.addEventListener("resize", () => (dropdown.style.display = "none"));
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .querySelectorAll(".dropdown-item.scroll-offset")
+    .forEach(function (item) {
+      item.addEventListener("click", function (e) {
+        // Voorkom normale jump
+        e.preventDefault();
+
+        // Haal target id uit href (#...)
+        const id = this.getAttribute("href").substring(1);
+        const target = document.getElementById(id);
+
+        // Haal de navbar hoogte op (houd rekening met kleine/grote navbar)
+        const navbar = document.querySelector("nav.navbar");
+        const navbarHeight = navbar.offsetHeight;
+
+        if (target) {
+          // Bepaal de positie van het element
+          const elementPosition =
+            target.getBoundingClientRect().top + window.pageYOffset;
+          // Scroll er naartoe met offset
+          window.scrollTo({
+            top: elementPosition - navbarHeight,
+            behavior: "smooth",
+          });
+        }
+
+        // Sluit de dropdown na klik
+        document.getElementById("behandelingen-dropdown").style.display =
+          "none";
+      });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // HOME en CONTACT tab scroll to top
+  document
+    .getElementById("nav-home-tab")
+    .addEventListener("click", function () {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 120); // kleine delay voor animatie Bootstrap
+    });
+  document
+    .getElementById("nav-contact-tab")
+    .addEventListener("click", function () {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 120);
+    });
+});

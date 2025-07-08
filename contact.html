@@ -2,77 +2,109 @@
 <html lang="en">
 
 <body>
-    <div class="container bg-white col-11 mx-auto col-md-7 my-5">
-        <div class="row d-flex justify-content-center px-2 ">
-            <ul class="nav nav-tabs mb-2 mt-3 d-flex justify-content-evenly border-0 align-self-center rounded" id="menu-tab"
-                role="tablist">
-                <button class="nav-link active" id="consult-tab" data-bs-toggle="tab" data-bs-target="#consult" type="button"
-                    role="tab" aria-controls="consult" aria-selected="true">FOTO CONSULT</button>
-                <button class="nav-link" id="vraag-tab" data-bs-toggle="tab" data-bs-target="#vraag" type="button" role="tab"
-                    aria-controls="vraag" aria-selected="false">VRAAG</button>
+
+    <div class="d-flex flex-column flex-md-row">
+        <div class="container bg-transparent rounded col-11 col-md-5 text-start text-white my-2 my-md-5">
+            <h3>Hoe verloopt een behandeltraject:</h3>
+            <p>Bij Scissors & ink bestaat iedere MHP behandeling uit 4 sessies</p>
+            <ul>
+                <Li class="my-1">Alles begint natuurlijk met een vrijblijvend eerste contact via de mail/ whatsapp/telefoon waarin
+                    vragen gesteld kunnen worden en ik d.m.v. foto's kan zien wat het probleem gebied is. Uiteraard is
+                    het ook mogelijk om een vrijblijvende afspraak te maken op locatie om kennis te maken met mij en de
+                    behandeling, Mocht er nog een bepaalde angst zijn, of wil je eerst voelen en zien hoe het werkt
+                    voordat je aan een MHP traject gaat beginnen, kan ik dat meteen gratis demonstreren. Ik zal ten alle
+                    tijden een oprecht advies geven, als iets niet haalbaar is of geen mooi resultaat zal opleveren zal
+                    ik dat ook zeker aangeven.</Li>
+                <Li class="my-1">Als wij beiden een goed gevoel hebben, kunnen we een eerste afspraak inplannen. De eerste 2
+                    behandelingen duren langer aangezien we hier de basis leggen voor het uiteindelijke resultaat. De 2
+                    laatste behandelingen zijn om de puntjes op de i te zetten om perfectie te behalen en duren ook iets
+                    korter.</Li>
+                <Li class="my-1">Na de laatste behandeling zijn we in principe klaar. Maar, ik vind het persoonlijk fijn om na een
+                    aantal weken nog even een korte koffie/ thee afspraak in te plannen om te horen en te zien hoe jouw
+                    nieuwe look bevalt. Maar dit is geen verplichting.</Li>
             </ul>
+            <p>Met de juiste nazorg zul je 4 jaar of langer profijt hebben van de MHP behandeling. Toch is het
+                verstandig om na 1 a 1.5 jaar een controle in te plannen. Dit is noemen we een “touch- up”. Dit is een
+                korte behandeling waar zo nodig de Micro haarpigmentatie word bijgewerkt of opgefrist zodat de kwaliteit
+                gewaarborgd blijft.</p>
         </div>
 
-        <div class="row d-flex justify-content-center">
-            <div class="card tab-content bg-transparent border-0">
-                <div class="tab-pane fade show active" id="consult" role="tabpanel" aria-labelledby="consult-tab">
-                    <form method="post" enctype="multipart/form-data">
-                        <div class="form-floating my-4">
-                            <input type="text" class="form-control" id="floatingName" name="naam" placeholder="name">
-                            <label for="floatingName">Uw volledige naam</label>
-                        </div>
-                        <div class="form-floating my-4">
-                            <input type="email" class="form-control" id="floatingEmail" name="email"
-                                placeholder="name@example.com">
-                            <label for="floatingEmail">Email</label>
-                        </div>
-                        <div class="form-floating my-4">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                                name="vraag" style="height: 100px"></textarea>
-                            <label for="floatingTextarea2">Notitie, wensen, situatie, bijzonderheden etc</label>
-                        </div>
-                        <div class="my-4">
-                            <label class="form-label" for="fotoUpload">Upload foto vooraanzicht</label>
-                            <input class="form-control" type="file" id="fotoUpload" name="fotos[]" accept="image/*">
-                            <small class="form-text text-muted">JPG, PNG of HEIC.</small>
-                        </div>
-                        <div class="my-4">
-                            <label class="form-label" for="fotoUpload">Upload foto zijaanzicht</label>
-                            <input class="form-control" type="file" id="fotoUpload" name="fotos[]" accept="image/*">
-                            <small class="form-text text-muted">JPG, PNG of HEIC.</small>
-                        </div>
-                        <div class="my-4">
-                            <label class="form-label" for="fotoUpload">Upload foto achteraanzicht/ kruin</label>
-                            <input class="form-control" type="file" id="fotoUpload" name="fotos[]" accept="image/*">
-                            <small class="form-text text-muted">JPG, PNG of HEIC.</small>
-                        </div>
-                        <button type="submit" class="btn mb-4 btn-lg col-12" id="btn-verstuur" style="font-weight: bold; background-color: rgba(33, 37, 41, 0.9);">VERSTUUR</button>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="vraag" role="tabpanel" aria-labelledby="vraag-tab">
-                    <form method="post">
-                        <div class="form-floating my-4">
-                            <input type="text" class="form-control" id="floatingName" name="naam" placeholder="name">
-                            <label for="floatingName">Uw volledige naam</label>
-                        </div>
-                        <div class="form-floating my-4">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                                name="vraag" style="height: 100px"></textarea>
-                            <label for="floatingTextarea2">Stel uw vraag</label>
-                        </div>
-                        <div class="form-floating my-4">
-                            <input type="email" class="form-control" id="floatingEmail" name="email"
-                                placeholder="name@example.com">
-                            <label for="floatingEmail">Email</label>
-                        </div>
-                        <button type="submit" class="btn mb-4 btn-lg col-12" id="btn-verstuur" style="font-weight: bold; background-color: rgba(33, 37, 41, 0.9);">VERSTUUR</button>
-                    </form>
+        <div class="container bg-white rounded col-11 col-md-5 my-2 my-md-5">
+            <div class="row d-flex justify-content-center px-2 ">
+                <ul class="nav nav-tabs mb-2 mt-3 d-flex justify-content-evenly border-0 align-self-center rounded"
+                    id="menu-tab" role="tablist">
+                    <button class="nav-link active" id="consult-tab" data-bs-toggle="tab" data-bs-target="#consult"
+                        type="button" role="tab" aria-controls="consult" aria-selected="true">FOTO CONSULT</button>
+                    <button class="nav-link" id="vraag-tab" data-bs-toggle="tab" data-bs-target="#vraag" type="button"
+                        role="tab" aria-controls="vraag" aria-selected="false">VRAAG</button>
+                </ul>
+            </div>
+
+            <div class="row d-flex justify-content-center">
+                <div class="card tab-content bg-transparent border-0">
+                    <div class="tab-pane fade show active" id="consult" role="tabpanel" aria-labelledby="consult-tab">
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="form-floating my-4">
+                                <input type="text" class="form-control" id="floatingName" name="naam"
+                                    placeholder="name">
+                                <label for="floatingName">Uw volledige naam</label>
+                            </div>
+                            <div class="form-floating my-4">
+                                <input type="email" class="form-control" id="floatingEmail" name="email"
+                                    placeholder="name@example.com">
+                                <label for="floatingEmail">Email</label>
+                            </div>
+                            <div class="form-floating my-4">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                                    name="vraag" style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">Notitie, wensen, situatie, bijzonderheden etc</label>
+                            </div>
+                            <div class="my-4">
+                                <label class="form-label" for="fotoUpload">Upload foto vooraanzicht</label>
+                                <input class="form-control" type="file" id="fotoUpload" name="fotos[]" accept="image/*">
+                                <small class="form-text text-muted">JPG, PNG of HEIC.</small>
+                            </div>
+                            <div class="my-4">
+                                <label class="form-label" for="fotoUpload">Upload foto zijaanzicht</label>
+                                <input class="form-control" type="file" id="fotoUpload" name="fotos[]" accept="image/*">
+                                <small class="form-text text-muted">JPG, PNG of HEIC.</small>
+                            </div>
+                            <div class="my-4">
+                                <label class="form-label" for="fotoUpload">Upload foto achteraanzicht/ kruin</label>
+                                <input class="form-control" type="file" id="fotoUpload" name="fotos[]" accept="image/*">
+                                <small class="form-text text-muted">JPG, PNG of HEIC.</small>
+                            </div>
+                            <button type="submit" class="btn mb-4 btn-lg col-12" id="btn-verstuur"
+                                style="font-weight: bold; background-color: rgba(33, 37, 41, 0.9);">VERSTUUR</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="vraag" role="tabpanel" aria-labelledby="vraag-tab">
+                        <form method="post">
+                            <div class="form-floating my-4">
+                                <input type="text" class="form-control" id="floatingName" name="naam"
+                                    placeholder="name">
+                                <label for="floatingName">Uw volledige naam</label>
+                            </div>
+                            <div class="form-floating my-4">
+                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                                    name="vraag" style="height: 100px"></textarea>
+                                <label for="floatingTextarea2">Stel uw vraag</label>
+                            </div>
+                            <div class="form-floating my-4">
+                                <input type="email" class="form-control" id="floatingEmail" name="email"
+                                    placeholder="name@example.com">
+                                <label for="floatingEmail">Email</label>
+                            </div>
+                            <button type="submit" class="btn mb-4 btn-lg col-12" id="btn-verstuur">VERSTUUR</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-        
+
+
 </body>
 
 </html>

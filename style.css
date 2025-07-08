@@ -1,7 +1,11 @@
 .body {
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: rgba(35, 33, 46, 1);
+    background: linear-gradient(270deg,
+            rgba(108, 105, 122, 1) 0%,
+            rgba(69, 66, 82, 1) 33%,
+            rgba(67, 64, 75, 1) 66%,
+            rgba(35, 31, 32, 1) 100%);
 }
 
 ::-webkit-scrollbar {
@@ -10,7 +14,11 @@
 }
 
 nav {
-    background-color: rgba(35, 33, 46, 0.8);
+    background: linear-gradient(270deg,
+            rgba(108, 105, 122, 1) 0%,
+            rgba(69, 66, 82, 1) 33%,
+            rgba(67, 64, 75, 1) 66%,
+            rgba(35, 31, 32, 1) 100%);
 }
 
 .navbar-large {
@@ -46,8 +54,60 @@ nav {
     transition: margin-top 0.3s ease-in-out;
 }
 
+#btn-consult {
+    background: linear-gradient(270deg, #E3C489 0%, #B4852D 100%);
+    white-space: nowrap;
+    padding: 7px 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(180, 133, 45, 0.18);
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    transition:
+        background 0.45s cubic-bezier(.5, .3, .3, 1),
+        box-shadow 0.35s cubic-bezier(.5, .3, .3, 1),
+        transform 0.35s cubic-bezier(.5, .3, .3, 1),
+        top 0.3s cubic-bezier(.5, .3, .3, 1);
+    z-index: 100;
+}
+
+#btn-consult a {
+    color: white;
+    font-size: large;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-shadow:
+    0 2px 8px #B4852D,
+    0 1px 0 #43404B,
+    0 0 1px #43404B,
+    0 0 2px #43404B;
+    text-decoration: none;
+    transition: color 0.28s cubic-bezier(.5,.3,.3,1), text-shadow 0.4s cubic-bezier(.5,.3,.3,1);
+    display: block;
+}
+
+#btn-consult:hover,
+#btn-consult:focus {
+    cursor: pointer;
+    transform: scale(1.045);
+    border-style: ridge;
+    border-width: 1px;
+    border-color: white;
+}
+
+#btn-consult:hover a,
+#btn-consult:focus a {
+    color: #fff;
+}
+
+.navbar-small #btn-consult {
+    top: 30px;
+    transition: top 0.3s ease-in-out;
+}
+
+
 li {
-    font-size: 1.20rem;
+    font-size: 1.10rem;
 }
 
 p {
@@ -56,8 +116,22 @@ p {
 }
 
 #underbody {
-    margin-top: 165px;
+    margin-top: 150px;
 }
+
+.gradient-text {
+    background: linear-gradient(270deg,
+            rgba(108, 105, 122, 1) 0%,
+            rgba(69, 66, 82, 1) 33%,
+            rgba(67, 64, 75, 1) 66%,
+            rgba(35, 31, 32, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* for Firefox */
+    color: transparent;
+}
+
 
 @media (max-width: 768px) {
     p {
@@ -67,6 +141,14 @@ p {
 
     .navbar-small #navbar {
         margin-top: 20px;
+    }
+
+    #nav-behandelingen-tab {
+        min-width: 169px;
+        font-size: 1.1rem;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+        /* Je kan hier nog meer padding/font doen als je wil */
     }
 
     #underbody {
@@ -93,13 +175,22 @@ p {
         min-height: 170px;
         max-height: 340px;
     }
+
     .beer-slider {
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
+
+    #behandelingen-dropdown {
+        border-width: 1px;
+    }
+    
+    #behandelingen-dropdown .dropdown-item {
+        font-size: small;
+    }
 }
 
-.beer-slider, 
+.beer-slider,
 .beer-reveal {
     overflow: hidden;
     height: 65vh;
@@ -112,12 +203,12 @@ p {
 }
 
 .beer-slider {
-  visibility: hidden;
-  position: relative;
+    visibility: hidden;
+    position: relative;
 }
 
 .beer-slider.beer-loaded {
-  visibility: visible;
+    visibility: visible;
 }
 
 #button {
@@ -200,7 +291,10 @@ p {
 }
 
 #menu-tab {
-    background-color: rgba(35, 33, 46, 0.9);
+    background: linear-gradient(270deg,
+            rgba(108, 105, 122, 1) 0%,
+            rgba(69, 66, 82, 1) 33%,
+            rgba(67, 64, 75, 1) 100%);
     border-radius: 2px;
 }
 
@@ -222,11 +316,15 @@ p {
 #btn-verstuur {
     color: white;
     font-size: large;
+    font-weight: 400;
+    background: linear-gradient(270deg,
+            rgba(108, 105, 122, 1) 0%,
+            rgba(69, 66, 82, 1) 33%,
+            rgba(67, 64, 75, 1) 100%);
 }
 
 footer {
     width: 100%;
-    color: rgba(35, 33, 46, 1);
 }
 
 .footer-container {
@@ -235,18 +333,31 @@ footer {
     align-items: center;
 }
 
-nav .contact-info {
-  display: none;
-  position: absolute;       /* t.o.v. de nav (fixed) */
-  top: 1rem;                /* iets onder de bovenzijde */
-  right: 2rem;              /* afstand vanaf de rechterrand */
-  text-align: right;
-  font-size: 1rem;
+#behandelingen-dropdown {
+    background: rgba(69, 66, 82, 1);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-top: -10px;
+    border-style: ridge;
+    border-color: rgba(203, 165, 102, 1);
+    border-top: none;
+    border-width: 2.5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
-/* Links stijl */
-nav .contact-info a {
-  color: rgba(203, 165, 102, 1);  /* precies dezelfde goudkleur */
-  text-decoration: none;
+#behandelingen-dropdown .dropdown-item {
+    color: white;
+    transition: background 0.25s, color 0.2s, padding 0.2s;
+    padding: 7px 24px 7px 16px;
+}
+
+#behandelingen-dropdown .dropdown-item:hover, 
+#behandelingen-dropdown .dropdown-item:focus {
+    background: linear-gradient(90deg, #EAD691 0%, #E3C489 100%);
+    color: #43404B;
+    box-shadow: 0 2px 12px #B4852D33;
+    font-weight: 600;
+    cursor: pointer;
 }
 
