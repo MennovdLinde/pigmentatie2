@@ -77,12 +77,12 @@ nav {
     font-weight: 400;
     letter-spacing: 0.04em;
     text-shadow:
-    0 2px 8px #B4852D,
-    0 1px 0 #43404B,
-    0 0 1px #43404B,
-    0 0 2px #43404B;
+        0 2px 8px #B4852D,
+        0 1px 0 #43404B,
+        0 0 1px #43404B,
+        0 0 2px #43404B;
     text-decoration: none;
-    transition: color 0.28s cubic-bezier(.5,.3,.3,1), text-shadow 0.4s cubic-bezier(.5,.3,.3,1);
+    transition: color 0.28s cubic-bezier(.5, .3, .3, 1), text-shadow 0.4s cubic-bezier(.5, .3, .3, 1);
     display: block;
 }
 
@@ -171,9 +171,14 @@ p {
 
     .beer-slider,
     .beer-reveal {
-        height: 32vh !important;
-        min-height: 170px;
-        max-height: 340px;
+        height: 35vh !important;
+    }
+
+    .beer-slider img,
+    .beer-reveal img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
     }
 
     .beer-slider {
@@ -184,7 +189,7 @@ p {
     #behandelingen-dropdown {
         border-width: 1px;
     }
-    
+
     #behandelingen-dropdown .dropdown-item {
         font-size: small;
     }
@@ -193,7 +198,7 @@ p {
 .beer-slider,
 .beer-reveal {
     overflow: hidden;
-    height: 65vh;
+    height: fit-content;
 }
 
 .beer-slider img,
@@ -209,6 +214,18 @@ p {
 
 .beer-slider.beer-loaded {
     visibility: visible;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: rgba(180, 133, 45, 1);
+    /* jouw goudkleur met transparantie */
+    width: 48px;
+    /* standaard is 5%, kun je aanpassen */
+    height: 48px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 #button {
@@ -352,7 +369,7 @@ footer {
     padding: 7px 24px 7px 16px;
 }
 
-#behandelingen-dropdown .dropdown-item:hover, 
+#behandelingen-dropdown .dropdown-item:hover,
 #behandelingen-dropdown .dropdown-item:focus {
     background: linear-gradient(90deg, #EAD691 0%, #E3C489 100%);
     color: #43404B;
@@ -361,3 +378,40 @@ footer {
     cursor: pointer;
 }
 
+.mobile-bottom-bar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    background: linear-gradient(270deg,
+            rgba(108, 105, 122, 1) 0%,
+            rgba(69, 66, 82, 1) 33%,
+            rgba(67, 64, 75, 1) 66%,
+            rgba(35, 31, 32, 1) 100%);
+    z-index: 9999;
+    box-shadow: 0 -4px 16px rgba(35, 31, 32, 0.12);
+    padding: 0.7rem 1.2rem 0.8rem 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.consult-bottom-btn {
+    background: linear-gradient(270deg, #E3C489 0%, #B4852D 100%);
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(180, 133, 45, 0.13);
+    padding: 12px 0;
+    border: none;
+    text-shadow: 0 2px 8px #B4852D, 0 1px 0 #43404B, 0 0 1px #43404B, 0 0 2px #43404B;
+    transition: background 0.25s, color 0.25s, box-shadow 0.25s;
+}
+
+.consult-bottom-btn:active,
+.consult-bottom-btn:focus,
+.consult-bottom-btn:hover {
+    background: linear-gradient(270deg, #B4852D 0%, #E3C489 100%);
+    color: #fff;
+}
