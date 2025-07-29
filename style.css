@@ -169,21 +169,10 @@ p {
         max-height: 70px;
     }
 
-    .beer-slider,
-    .beer-reveal {
-        height: 35vh !important;
-    }
-
-    .beer-slider img,
-    .beer-reveal img {
-        height: 100%;
-        width: 100%;
-        object-fit: contain;
-    }
-
     .beer-slider {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
+        max-width: 98vw;
+        aspect-ratio: 4 / 3;
+        height: auto;
     }
 
     #behandelingen-dropdown {
