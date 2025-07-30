@@ -173,6 +173,7 @@ p {
         max-width: 98vw;
         aspect-ratio: 4 / 3;
         height: auto;
+        max-height: 60vh;
     }
 
     #behandelingen-dropdown {
