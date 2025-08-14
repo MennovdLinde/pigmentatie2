@@ -24,6 +24,17 @@ function triggerBtn2() {
   triggetContact.click();
 }
 
+let _beerResizeTimer;
+
+window.addEventListener('orientationchange', () => {
+  setTimeout(initBeerSliders, 250); // even wachten tot layout stabiel is
+});
+
+window.addEventListener('resize', () => {
+  clearTimeout(_beerResizeTimer);
+  _beerResizeTimer = setTimeout(() => initBeerSliders(), 300);
+});
+
 fetch("home.html")
   .then((response) => response.text())
   .then((html) => {
