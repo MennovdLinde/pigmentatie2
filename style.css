@@ -105,7 +105,6 @@ nav {
     transition: top 0.3s ease-in-out;
 }
 
-
 li {
     font-size: 1.10rem;
 }
@@ -132,6 +131,60 @@ p {
     color: transparent;
 }
 
+#seo-intro {
+    background: transparent;
+    color: #E3C489;
+    border-radius: 8px;
+    border: 2px solid #E3C489;
+}
+
+#seo-faq {
+    background: transparent; /* geen wit blok */
+    color: #E3C489; /* goudkleur voor tekst */
+}
+
+/* Titel van FAQ */
+#seo-faq h2 {
+    color: #E3C489;
+    border-bottom: 2px solid #E3C489;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Accordion item */
+#seo-faq .accordion-item {
+    background: transparent;
+    border: 1.5px solid #E3C489;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Header knop */
+#seo-faq .accordion-button {
+    background: transparent;
+    color: #E3C489;
+    font-weight: 500;
+    border: none;
+    box-shadow: none;
+}
+
+/* Hover/active effect */
+#seo-faq .accordion-button:not(.collapsed) {
+    background: rgba(180, 133, 45, 0.15); /* subtiel goud transparant */
+    color: #fff;
+}
+
+/* Dropdown arrow (Bootstrap caret) */
+#seo-faq .accordion-button::after {
+    filter: invert(76%) sepia(44%) saturate(529%) hue-rotate(7deg) brightness(93%) contrast(91%);
+    /* maakt de standaard arrow goudkleurig */
+}
+
+/* Accordion body */
+#seo-faq .accordion-body {
+    background: transparent;
+    color: #E3C489;
+}
 
 @media (max-width: 768px) {
     p {

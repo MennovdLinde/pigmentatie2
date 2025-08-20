@@ -1,3 +1,4 @@
+// ========= NAVBAR GROOT/KLEIN OP SCROLL =========
 window.addEventListener("scroll", function () {
   const navbar = document.querySelector("nav.navbar");
   if (window.scrollY > 60) {
@@ -14,55 +15,82 @@ window.addEventListener("DOMContentLoaded", function () {
   navbar.classList.add("navbar-large");
 });
 
+// ========= HULPFUNCTIES =========
+function getNavbarHeight() {
+  const navbar = document.querySelector("nav.navbar");
+  return navbar ? navbar.offsetHeight : 0;
+}
+
+function scrollToWithOffset(targetEl) {
+  const offset = getNavbarHeight();
+  const top = targetEl.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({ top, behavior: "smooth" });
+}
+
+// Wacht tot een tab zichtbaar is, scroll dan naar het anker
+function openTabThenScroll(tabBtnId, anchorId) {
+  const tabBtn = document.getElementById(tabBtnId);
+
+  const doScroll = () => {
+    const target = document.getElementById(anchorId);
+    if (target) {
+      // kleine delay zodat layout kan stabiliseren
+      setTimeout(() => scrollToWithOffset(target), 50);
+    }
+  };
+
+  // Als tab al actief is, meteen scrollen
+  if (tabBtn && tabBtn.getAttribute("aria-selected") === "true") {
+    doScroll();
+    return;
+  }
+
+  if (!tabBtn) {
+    // Geen specifieke tab-knop gevonden → direct proberen te scrollen
+    doScroll();
+    return;
+  }
+
+  // Anders: wachten tot de tab is "getoond", dán scrollen
+  const onShown = () => {
+    tabBtn.removeEventListener("shown.bs.tab", onShown);
+    doScroll();
+  };
+  tabBtn.addEventListener("shown.bs.tab", onShown);
+  tabBtn.click();
+}
+
+// ========= CTA BUTTONS =========
 function triggerBtn() {
   var triggetContact = document.getElementById("nav-contact-tab");
   triggetContact.click();
 }
-
 function triggerBtn2() {
   var triggetContact = document.getElementById("nav-behandelingen-tab");
   triggetContact.click();
 }
 
+// ========= BEERSLIDER & RESPONSIVE =========
 let _beerResizeTimer;
 
-window.addEventListener('orientationchange', () => {
+window.addEventListener("orientationchange", () => {
   setTimeout(initBeerSliders, 250); // even wachten tot layout stabiel is
 });
 
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   clearTimeout(_beerResizeTimer);
   _beerResizeTimer = setTimeout(() => initBeerSliders(), 300);
 });
 
-fetch("home.html")
-  .then((response) => response.text())
-  .then((html) => {
-    document.getElementById("nav-home").innerHTML = html;
-    const carousels = [
-      "#carouselExampleSlidesOnly1",
-      "#carouselExampleSlidesOnly1mob",
-      "#carouselExampleSlidesOnly2",
-      "#carouselExampleSlidesOnly2mob",
-    ];
-
-    carousels.forEach((id) => {
-      const element = document.querySelector(id);
-      if (element) {
-        new bootstrap.Carousel(element);
-      }
-    });
-  });
-
-fetch("behandelingen.html")
-  .then((response) => response.text())
-  .then((html) => {
-    document.getElementById("nav-behandelingen").innerHTML = html;
-    initBeerSliders();
-  });
-
 function isVisible(el) {
-  return el.offsetParent !== null;
+  return el && el.offsetParent !== null;
+}
+
+function initializeSlider(slider) {
+  if (!slider.classList.contains("beer-loaded")) {
+    new BeerSlider(slider);
+    slider.classList.add("beer-loaded");
+  }
 }
 
 function initBeerSliders() {
@@ -73,51 +101,70 @@ function initBeerSliders() {
     const images = slider.querySelectorAll("img");
     let loadedCount = 0;
 
+    const tryInit = () => {
+      if (loadedCount === images.length) initializeSlider(slider);
+    };
+
     images.forEach((img) => {
       if (img.complete) {
         loadedCount++;
+        tryInit();
       } else {
         img.addEventListener("load", () => {
           loadedCount++;
-          if (loadedCount === images.length) {
-            initializeSlider(slider);
-          }
+          tryInit();
         });
         img.addEventListener("error", () => {
           loadedCount++;
+          tryInit();
         });
       }
     });
 
-    if (loadedCount === images.length) {
-      initializeSlider(slider);
-    }
-  });
-
-  // fallback init na 2 seconden voor overgebleven sliders
-  setTimeout(() => {
-    sliders.forEach((slider) => {
+    // Fallback init na 2 seconden
+    setTimeout(() => {
       if (!slider.classList.contains("beer-loaded") && isVisible(slider)) {
         initializeSlider(slider);
       }
-    });
-  }, 2000);
+    }, 2000);
+  });
 }
 
-function initializeSlider(slider) {
-  if (!slider.classList.contains("beer-loaded")) {
-    new BeerSlider(slider);
-    slider.classList.add("beer-loaded");
-  }
-}
+// ========= CONTENT LADEN =========
+fetch("home.html")
+  .then((response) => response.text())
+  .then((html) => {
+    document.getElementById("nav-home").innerHTML = html;
+    const carousels = [
+      "#carouselExampleSlidesOnly1",
+      "#carouselExampleSlidesOnly1mob",
+      "#carouselExampleSlidesOnly2",
+      "#carouselExampleSlidesOnly2mob",
+    ];
+    carousels.forEach((id) => {
+      const element = document.querySelector(id);
+      if (element) new bootstrap.Carousel(element);
+    });
+  });
+
+fetch("behandelingen.html")
+  .then((response) => response.text())
+  .then((html) => {
+    document.getElementById("nav-behandelingen").innerHTML = html;
+    initBeerSliders();
+  });
 
 fetch("contact.html")
   .then((response) => response.text())
   .then((html) => {
     document.getElementById("nav-contact").innerHTML = html;
-    addAfsprakenToggleEvents();
+    // addAfsprakenToggleEvents bestaat op jouw site; aanroepen blijft zoals je had
+    if (typeof addAfsprakenToggleEvents === "function") {
+      addAfsprakenToggleEvents();
+    }
   });
 
+// ========= TAB EVENTS =========
 document
   .getElementById("nav-behandelingen-tab")
   .addEventListener("shown.bs.tab", function () {
@@ -125,10 +172,23 @@ document
   });
 
 document.addEventListener("DOMContentLoaded", function () {
+  // HOME en CONTACT tab: scroll naar top
+  document.getElementById("nav-home-tab").addEventListener("click", function () {
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 120);
+  });
+  document
+    .getElementById("nav-contact-tab")
+    .addEventListener("click", function () {
+      setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 120);
+    });
+});
+
+// ========= DROPDOWN BEHANDELINGEN POSITIE & SLUITEN =========
+document.addEventListener("DOMContentLoaded", function () {
   const behandelingenTab = document.getElementById("nav-behandelingen-tab");
   const dropdown = document.getElementById("behandelingen-dropdown");
 
-  behandelingenTab.addEventListener("click", function (e) {
+  behandelingenTab.addEventListener("click", function () {
     setTimeout(function () {
       const rect = behandelingenTab.getBoundingClientRect();
       dropdown.style.top = rect.bottom + "px";
@@ -157,54 +217,27 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", () => (dropdown.style.display = "none"));
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  document
-    .querySelectorAll(".dropdown-item.scroll-offset")
-    .forEach(function (item) {
-      item.addEventListener("click", function (e) {
-        // Voorkom normale jump
-        e.preventDefault();
+// ========= UNIVERSELE SCROLL-OFFSET LINKS (FAQ + DROPDOWN + OVERAL) =========
+// Werkt voor álle <a class="scroll-offset" href="#..."> links, waar dan ook.
+// Optioneel: data-tab="nav-behandelingen-tab" om eerst die tab te openen.
+document.addEventListener("click", function (e) {
+  const link = e.target.closest("a.scroll-offset");
+  if (!link) return;
 
-        // Haal target id uit href (#...)
-        const id = this.getAttribute("href").substring(1);
-        const target = document.getElementById(id);
+  // Voorkom directe anchor-jump
+  e.preventDefault();
 
-        // Haal de navbar hoogte op (houd rekening met kleine/grote navbar)
-        const navbar = document.querySelector("nav.navbar");
-        const navbarHeight = navbar.offsetHeight;
+  const href = link.getAttribute("href") || "";
+  if (!href.startsWith("#")) return;
 
-        if (target) {
-          // Bepaal de positie van het element
-          const elementPosition =
-            target.getBoundingClientRect().top + window.pageYOffset;
-          // Scroll er naartoe met offset
-          window.scrollTo({
-            top: elementPosition - navbarHeight,
-            behavior: "smooth",
-          });
-        }
+  const anchorId = href.slice(1);
+  // Standaard openen we de behandelingen-tab, tenzij anders gespecificeerd
+  const tabBtnId = link.getAttribute("data-tab") || "nav-behandelingen-tab";
 
-        // Sluit de dropdown na klik
-        document.getElementById("behandelingen-dropdown").style.display =
-          "none";
-      });
-    });
-});
+  // Dropdown sluiten indien open
+  const dropdown = document.getElementById("behandelingen-dropdown");
+  if (dropdown) dropdown.style.display = "none";
 
-document.addEventListener("DOMContentLoaded", function () {
-  // HOME en CONTACT tab scroll to top
-  document
-    .getElementById("nav-home-tab")
-    .addEventListener("click", function () {
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 120); // kleine delay voor animatie Bootstrap
-    });
-  document
-    .getElementById("nav-contact-tab")
-    .addEventListener("click", function () {
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 120);
-    });
+  // Tab openen (indien nodig) en daarna scrollen met offset
+  openTabThenScroll(tabBtnId, anchorId);
 });
